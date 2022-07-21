@@ -1,12 +1,13 @@
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
 using Blazor.Diagrams.Core.Models.Base;
+using System;
 
 namespace CustomNodesLinks.Models
 {
   public sealed class DiagramLinkLabel : LinkLabelModel
   {
-    public DiagramLinkLabel(BaseLinkModel parent, string id, string content, double? distance = null, Point? offset = null) : 
+    public DiagramLinkLabel(BaseLinkModel parent, Guid id, string content, double? distance = null, Point? offset = null) : 
       base(parent, id, content, distance, offset)
     {
     }

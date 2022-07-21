@@ -1,5 +1,6 @@
 ﻿using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -18,7 +19,7 @@ namespace Blazor.Diagrams.Core.Models
             Size = size ?? Size.Zero;
         }
 
-        public PortModel(string id, NodeModel parent, PortAlignment alignment = PortAlignment.Bottom,
+        public PortModel(Guid id, NodeModel parent, PortAlignment alignment = PortAlignment.Bottom,
             Point? position = null, Size? size = null) : base(id)
         {
             Parent = parent;

@@ -61,6 +61,70 @@ namespace Blazor.Diagrams.Core
             RegisterBehavior(new EventsBehavior(this));
         }
 
+        public NodeModel? ResolveNode(Guid id)
+        {
+
+            foreach (var group in this.Groups)
+            {
+                var result = group.ResolveNode(id);
+                if (result != null)
+                    return result;
+            }
+
+            foreach (var node in this.Nodes)
+            {
+                if (node.Id == id)
+                    return node;
+            }
+
+            return null;
+
+        }
+
+        public PortModel? ResolvePort(Guid id, Guid? nodeId = null)
+        {
+
+            if (nodeId.HasValue)
+            {
+
+                var node = ResolveNode(nodeId.Value);
+                if (node != null)
+                    foreach (var port in node.Ports)
+                        if (node.Id == id)
+                            return port;
+
+            }
+
+            foreach (var group in this.Groups)
+            {
+                var result = group.ResolvePort(id);
+                if (result != null)
+                    return result;
+            }
+
+            foreach (var node in this.Nodes)
+                foreach (var port in node.Ports)
+                    if (port.Id == id)
+                        return port;
+
+            return null;
+
+        }
+
+        public GroupModel? ResolveGroup(Guid id)
+        {
+
+            foreach (var group in this.Groups)
+            {
+                var result = group.ResolveNode(id);
+                if (result != null && result is GroupModel m)
+                    return m;
+            }
+
+            return null;
+
+        }
+
         public NodeLayer Nodes { get; }
         public LinkLayer Links { get; }
         public IReadOnlyList<GroupModel> Groups => _groups;
@@ -385,5 +449,6 @@ namespace Blazor.Diagrams.Core
         internal void OnTouchEnd(Model model, TouchEventArgs e) => TouchEnd?.Invoke(model, e);
 
         #endregion
+
     }
 }

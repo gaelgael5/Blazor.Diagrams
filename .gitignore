@@ -364,3 +364,4 @@ mono_crash.*
 # Coverlet code coverage output
 **/coverage.json
 **/coverage.opencover.xml
+/Cartography

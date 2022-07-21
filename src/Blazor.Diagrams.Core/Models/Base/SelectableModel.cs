@@ -1,10 +1,12 @@
-﻿namespace Blazor.Diagrams.Core.Models.Base
+﻿using System;
+
+namespace Blazor.Diagrams.Core.Models.Base
 {
     public abstract class SelectableModel : Model
     {
         public SelectableModel() { }
 
-        public SelectableModel(string id) : base(id) { }
+        public SelectableModel(Guid id) : base(id) { }
 
         public bool Selected { get; internal set; }
     }

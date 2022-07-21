@@ -28,6 +28,7 @@ namespace SharedDemo.Demos
 
         private void OnDrop(DragEventArgs e)
         {
+
             if (_draggedType == null) // Unkown item
                 return;
 

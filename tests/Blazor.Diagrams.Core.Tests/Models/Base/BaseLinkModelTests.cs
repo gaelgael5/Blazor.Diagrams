@@ -1,6 +1,7 @@
 ﻿using Blazor.Diagrams.Core.Models;
 using Blazor.Diagrams.Core.Models.Base;
 using FluentAssertions;
+using System;
 using Xunit;
 
 namespace Blazor.Diagrams.Core.Tests.Models.Base
@@ -81,11 +82,11 @@ namespace Blazor.Diagrams.Core.Tests.Models.Base
             {
             }
 
-            public TestLink(string id, NodeModel sourceNode, NodeModel targetNode) : base(id, sourceNode, targetNode)
+            public TestLink(Guid id, NodeModel sourceNode, NodeModel targetNode) : base(id, sourceNode, targetNode)
             {
             }
 
-            public TestLink(string id, PortModel sourcePort, PortModel targetPort = null) : base(id, sourcePort, targetPort)
+            public TestLink(Guid id, PortModel sourcePort, PortModel targetPort = null) : base(id, sourcePort, targetPort)
             {
             }
         }

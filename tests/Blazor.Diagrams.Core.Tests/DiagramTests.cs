@@ -5,6 +5,8 @@ using Xunit;
 
 namespace Blazor.Diagrams.Core.Tests
 {
+
+
     public class DiagramTests
     {
         [Fact]

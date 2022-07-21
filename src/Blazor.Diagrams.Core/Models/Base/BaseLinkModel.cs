@@ -21,7 +21,7 @@ namespace Blazor.Diagrams.Core.Models.Base
             TargetNode = targetNode;
         }
 
-        public BaseLinkModel(string id, NodeModel sourceNode, NodeModel? targetNode) : base(id)
+        public BaseLinkModel(Guid id, NodeModel sourceNode, NodeModel? targetNode) : base(id)
         {
             SourceNode = sourceNode;
             TargetNode = targetNode;
@@ -35,7 +35,7 @@ namespace Blazor.Diagrams.Core.Models.Base
             TargetNode = targetPort?.Parent;
         }
 
-        public BaseLinkModel(string id, PortModel sourcePort, PortModel? targetPort = null) : base(id)
+        public BaseLinkModel(Guid id, PortModel sourcePort, PortModel? targetPort = null) : base(id)
         {
             SourcePort = sourcePort;
             TargetPort = targetPort;

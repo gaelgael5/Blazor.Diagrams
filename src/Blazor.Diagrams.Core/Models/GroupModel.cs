@@ -1,13 +1,16 @@
 ﻿using Blazor.Diagrams.Core.Extensions;
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Blazor.Diagrams.Core.Models
 {
+
     public class GroupModel : NodeModel
     {
+
         private readonly List<NodeModel> _children;
 
         public GroupModel(IEnumerable<NodeModel> children, byte padding = 30)
@@ -21,6 +24,7 @@ namespace Blazor.Diagrams.Core.Models
 
         public IReadOnlyList<NodeModel> Children => _children;
         public byte Padding { get; }
+
         public IEnumerable<BaseLinkModel> HandledLinks => _children.SelectMany(c => c.AllLinks).Distinct();
 
         public void AddChild(NodeModel child)
@@ -105,6 +109,50 @@ namespace Blazor.Diagrams.Core.Models
             }
         }
 
+        internal NodeModel? ResolveNode(Guid id)
+        {
+            foreach (NodeModel node in this._children)
+            {
+
+                if (node.Id == id)
+                    return node;
+
+                else if (node is GroupModel group)
+                {
+                    var result = group.ResolveNode(id);
+                    if (result != null)
+                        return result;
+                }
+
+            }
+
+            return null;
+
+        }
+
+        internal PortModel? ResolvePort(Guid id)
+        {
+
+            foreach (NodeModel node in this._children)
+            {
+
+                foreach (var port in node.Ports)
+                    if (port.Id == id)
+                        return port;
+
+                if (node is GroupModel group)
+                {
+                    var result = group.ResolvePort(id);
+                    if (result != null)
+                        return result;
+                }
+
+            }
+
+            return null;
+
+        }
+
         private bool UpdateDimensions()
         {
             if (Children.Any(n => n.Size == null))
@@ -115,5 +163,6 @@ namespace Blazor.Diagrams.Core.Models
             Position = new Point(bounds.Left - Padding, bounds.Top - Padding);
             return true;
         }
+
     }
 }

@@ -8,9 +8,6 @@ namespace Blazor.Diagrams.Core.Models
 {
     public class NodeModel : MovableModel
     {
-        private readonly List<PortModel> _ports = new List<PortModel>();
-        private readonly List<BaseLinkModel> _links = new List<BaseLinkModel>();
-        private Size? _size;
 
         public event Action<NodeModel>? SizeChanged;
         public event Action<NodeModel>? Moving;
@@ -22,7 +19,7 @@ namespace Blazor.Diagrams.Core.Models
             ShapeDefiner = shape ?? Shapes.Rectangle;
         }
 
-        public NodeModel(string id, Point? position = null, RenderLayer layer = RenderLayer.HTML,
+        public NodeModel(Guid id, Point? position = null, RenderLayer layer = RenderLayer.HTML,
             ShapeDefiner? shape = null) : base(id, position)
         {
             Layer = layer;
@@ -30,6 +27,7 @@ namespace Blazor.Diagrams.Core.Models
         }
 
         public RenderLayer Layer { get; }
+
         public ShapeDefiner ShapeDefiner { get; }
         public Size? Size
         {
@@ -44,6 +42,7 @@ namespace Blazor.Diagrams.Core.Models
             }
         }
         public GroupModel? Group { get; internal set; }
+
         public string Title { get; set; }
 
         public IReadOnlyList<PortModel> Ports => _ports;
@@ -145,5 +144,10 @@ namespace Blazor.Diagrams.Core.Models
         internal void AddLink(BaseLinkModel link) => _links.Add(link);
 
         internal void RemoveLink(BaseLinkModel link) => _links.Remove(link);
+
+        private readonly List<PortModel> _ports = new List<PortModel>();
+        private readonly List<BaseLinkModel> _links = new List<BaseLinkModel>();
+        private Size? _size;
+
     }
 }

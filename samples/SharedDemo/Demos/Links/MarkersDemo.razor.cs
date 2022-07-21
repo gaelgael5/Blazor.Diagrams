@@ -71,8 +71,10 @@ namespace SharedDemo.Demos.Links
             _diagram.Nodes.Add(new[] { node1, node2 });
 
             link = new LinkModel(node1.GetPort(PortAlignment.Right), node2.GetPort(PortAlignment.Left));
+            
             link.SourceMarker = new LinkMarker("M 0 -8 L 3 -8 3 8 0 8 z M 4 -8 7 -8 7 8 4 8 z M 8 -8 16 0 8 8 z", 16);
             link.TargetMarker = new LinkMarker("M 0 -8 L 8 -8 4 0 8 8 0 8 4 0 z", 8);
+
             link.Labels.Add(new LinkLabelModel(link, "Custom"));
             _diagram.Links.Add(link);
         }

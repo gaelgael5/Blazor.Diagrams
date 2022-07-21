@@ -1,16 +1,20 @@
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
+using System;
 
 namespace CustomNodesLinks.Models
 {
-  public sealed class DiagramNode : NodeModel
-  {
-    public DiagramNode(string name, Point pos) :
-      base(name, pos)
+
+    public sealed class DiagramNode : NodeModel
     {
-      Name = name;
+
+        public DiagramNode(Guid id, string name, Point pos) :
+          base(id, pos)
+        {
+            Name = name;
+        }
+
+        public string Name { get; set; }
     }
 
-    public string Name { get; set; }
-  }
 }

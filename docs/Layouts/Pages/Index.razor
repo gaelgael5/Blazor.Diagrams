@@ -76,7 +76,7 @@ or it will not be rendered.
 
   private static NodeModel NewNode(double x, double y)
   {
-    var node = new NodeModel(Guid.NewGuid().ToString(), new Point(x, y));
+    var node = new NodeModel(Guid.NewGuid(), new Point(x, y));
     return node;
   }
 
