@@ -11,6 +11,7 @@ namespace Blazor.Diagrams.Components
 {
     public partial class DiagramCanvas : IDisposable
     {
+
         [CascadingParameter]
         public Diagram Diagram { get; set; }
 
@@ -27,8 +28,7 @@ namespace Blazor.Diagrams.Components
         private DotNetObjectReference<DiagramCanvas> _reference;
         private bool _shouldReRender;
 
-        private string LayerStyle
-            => FormattableString.Invariant($"transform: translate({Diagram.Pan.X}px, {Diagram.Pan.Y}px) scale({Diagram.Zoom});");
+        private string LayerStyle            => FormattableString.Invariant($"transform: translate({Diagram.Pan.X}px, {Diagram.Pan.Y}px) scale({Diagram.Zoom});");
 
         protected override void OnInitialized()
         {
