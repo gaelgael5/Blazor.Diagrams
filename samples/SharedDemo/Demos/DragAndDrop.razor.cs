@@ -39,5 +39,6 @@ namespace SharedDemo.Demos
             _diagram.Nodes.Add(node);
             _draggedType = null;
         }
+    
     }
 }

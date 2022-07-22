@@ -18,8 +18,29 @@ or it will not be rendered.
 100vw = 100% viewport width
 100vh = 100% viewport height
 -->
-<div style="width:100vw; height: 100vh">
-  <CascadingValue Value="Diagram">
-    <DiagramCanvas></DiagramCanvas>
-  </CascadingValue>
+<div class="row h-100">
+    <div class="col-1">
+        @* Toolbox *@
+        <div class="row h-100 p-4 no-gutters" style="background: #eee;">
+
+            <div class="text-center" draggable="true" @ondragstart="() => OnDragStart(0)">
+                <img class="d-block m-auto" src="@icon" />
+
+                <span>Default Node</span>
+            </div>
+
+            <div class="text-center" draggable="true" @ondragstart="() => OnDragStart(0)">
+                <img class="d-block m-auto" src="_content/SharedDemo/img/BotAnswerNodeWidget.png" />
+                <span>Bot Answer Node</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-11" style="width:100vw; height: 100vh" ondragover="event.preventDefault();" @ondragover:preventDefault @ondrop="OnDrop">
+        <CascadingValue Value="Diagram">
+            <DiagramCanvas></DiagramCanvas>
+        </CascadingValue>
+    </div>
+
 </div>

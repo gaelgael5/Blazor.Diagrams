@@ -3,7 +3,7 @@
 @inject LayoutData LayoutData
 
 <div class="row h-100">
-    <div class="col-4">
+    <div class="col-1">
         @* Toolbox *@
         <div class="row h-100 p-4 no-gutters" style="background: #eee;">
             <div class="col-6">
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="col-8" ondragover="event.preventDefault();" @ondragover:preventDefault @ondrop="OnDrop">
+    <div class="col-11" ondragover="event.preventDefault();" @ondragover:preventDefault @ondrop="OnDrop">
         <CascadingValue Value="_diagram">
             <DiagramCanvas></DiagramCanvas>
         </CascadingValue>

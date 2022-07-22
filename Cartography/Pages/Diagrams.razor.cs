@@ -1,12 +1,15 @@
 ﻿using Blazor.Diagrams.Core;
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Cartography.Pages
 {
 
     public partial class Diagrams
     {
+
+        private string icon = "/svg/GlyphFilled__1k.svg";
 
         private Diagram Diagram { get; set; }
 
@@ -52,6 +55,30 @@ namespace Cartography.Pages
             node.AddPort(PortAlignment.Right);
             return node;
         }
+
+
+        private void OnDragStart(int key)
+        {
+            // Can also use transferData, but this is probably "faster"
+            _draggedType = key;
+        }
+
+        private void OnDrop(DragEventArgs e)
+        {
+
+            if (_draggedType == null) // Unkown item
+                return;
+
+            var position = Diagram.GetRelativeMousePoint(e.ClientX, e.ClientY);
+            var node = _draggedType == 0 ? new NodeModel(position) : new NodeModel(position);
+            node.AddPort(PortAlignment.Top);
+            node.AddPort(PortAlignment.Bottom);
+            Diagram.Nodes.Add(node);
+            _draggedType = null;
+        }
+
+        private int? _draggedType;
+
 
     }
 
