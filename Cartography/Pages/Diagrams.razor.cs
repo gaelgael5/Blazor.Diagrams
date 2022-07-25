@@ -1,7 +1,10 @@
 ﻿using Blazor.Diagrams.Core;
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
+using Blazor.Diagrams.Core.Tools;
 using Microsoft.AspNetCore.Components.Web;
+using System;
+using System.Linq;
 
 namespace Cartography.Pages
 {
@@ -9,13 +12,28 @@ namespace Cartography.Pages
     public partial class Diagrams
     {
 
-        private string icon = "/svg/GlyphFilled__1k.svg";
-
         private Diagram Diagram { get; set; }
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
+
+            this.toolbox = new Toolbox()
+            {
+
+                new ToolboxItem()
+                {
+                    Category = "Default",
+                    Label = "tool1",
+                    Icon = "/svg/GlyphFilled__1k.svg",
+                    Model = new ToolboxItemModel()
+                    {
+                        Label = "tool",
+                        Ports = PortAlignment.Top | PortAlignment.Bottom,
+                    }
+                }
+
+            };
 
             var options = new DiagramOptions
             {
@@ -34,6 +52,7 @@ namespace Cartography.Pages
             Diagram = new Diagram(options);
 
             Setup();
+
         }
 
         private void Setup()
@@ -57,10 +76,12 @@ namespace Cartography.Pages
         }
 
 
-        private void OnDragStart(int key)
+        private void OnDragStart(string uuid)
         {
+            var key = new Guid(uuid);
+
             // Can also use transferData, but this is probably "faster"
-            _draggedType = key;
+            _draggedType = toolbox.FirstOrDefault(c => c.Uuid == key);
         }
 
         private void OnDrop(DragEventArgs e)
@@ -70,16 +91,28 @@ namespace Cartography.Pages
                 return;
 
             var position = Diagram.GetRelativeMousePoint(e.ClientX, e.ClientY);
-            var node = _draggedType == 0 ? new NodeModel(position) : new NodeModel(position);
-            node.AddPort(PortAlignment.Top);
-            node.AddPort(PortAlignment.Bottom);
-            Diagram.Nodes.Add(node);
+            var newModel = _draggedType.Create(position.X, position.Y);
+
+            if (Diagram.Nodes.Any(c => c.Title == newModel.Title))
+            {
+                int c = 2;
+                var n = newModel.Title + c.ToString();
+
+                while (Diagram.Nodes.Any(c => c.Title == n))
+                {
+                    c++;
+                    n = newModel.Title + c.ToString();
+                }
+                newModel.Title = n;
+            }
+
+            Diagram.Nodes.Add(newModel);
             _draggedType = null;
+
         }
 
-        private int? _draggedType;
-
-
+        private ToolboxItem _draggedType;
+        private Toolbox toolbox;
     }
 
 }

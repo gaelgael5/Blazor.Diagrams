@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class GraphNodeList : List<GraphNode>
+    public class DiagramNodeList : List<DiagramNodeModel>
     {
 
         internal void CreateFrom(NodeLayer nodes)
@@ -13,7 +13,7 @@ namespace Blazor.Diagrams.Core.Serializations
 
             foreach (NodeModel node in nodes)
             {
-                var n = new GraphNode();
+                var n = new DiagramNodeModel();
                 n.CreateFrom(node);
                 this.Add(n);
             }
@@ -31,7 +31,7 @@ namespace Blazor.Diagrams.Core.Serializations
                 
                 else
                 {
-                    var n2 = new GraphNode();
+                    var n2 = new DiagramNodeModel();
                     n2.CreateFrom(n);
                     this.Add(n2);
                 }
@@ -51,7 +51,7 @@ namespace Blazor.Diagrams.Core.Serializations
                 
                 else
                 {
-                    var n2 = new GraphNode();
+                    var n2 = new DiagramNodeModel();
                     n2.CreateFrom(n);
                     this.Add(n2);
                 }
@@ -63,7 +63,7 @@ namespace Blazor.Diagrams.Core.Serializations
         internal void GenerateTo(Diagram diagram)
         {
 
-            foreach (GraphNode node in this)
+            foreach (DiagramNodeModel node in this)
                 node.GenerateTo(diagram);
 
         }

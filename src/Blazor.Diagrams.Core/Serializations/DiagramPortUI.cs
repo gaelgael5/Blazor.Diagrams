@@ -3,7 +3,7 @@ using System;
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class GraphPortUI
+    public class DiagramPortUI
     {
 
         public PortAlignment Alignment { get; set; }
@@ -14,10 +14,10 @@ namespace Blazor.Diagrams.Core.Serializations
         
         public double X { get; set; }
 
-        internal static GraphPortUI Serialize(PortModel port)
+        internal static DiagramPortUI Serialize(PortModel port)
         {
 
-            return new GraphPortUI()
+            return new DiagramPortUI()
             {
                 Uuid = port.Id,
                 Alignment = port.Alignment,

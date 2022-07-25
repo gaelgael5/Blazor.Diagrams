@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Blazor.Diagrams.Core.Serializations
 {
 
-    public class GraphRelationshipList : List<GraphRelationship>
+    public class DiagramRelationshipList : List<DiagramRelationship>
     {
 
         internal void CreateFrom(LinkLayer links)
@@ -15,7 +15,7 @@ namespace Blazor.Diagrams.Core.Serializations
             foreach (BaseLinkModel link in links)
             {
 
-                var l = new GraphRelationship();
+                var l = new DiagramRelationship();
                 l.CreateFrom(link);
                 this.Add(l);
             }

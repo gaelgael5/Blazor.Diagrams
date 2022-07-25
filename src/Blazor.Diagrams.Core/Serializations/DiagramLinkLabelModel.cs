@@ -3,10 +3,10 @@ using System;
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class GraphLinkLabelModel
+    public class DiagramLinkLabelModel
     {
 
-        public GraphLinkLabelModel()
+        public DiagramLinkLabelModel()
         {
 
         }

@@ -5,19 +5,19 @@ using System.Collections.Generic;
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class GraphRelationship
+    public class DiagramRelationship
     {
 
-        static GraphRelationship()
+        static DiagramRelationship()
         {
             _propertiesManaged = new HashSet<string>();
-            GraphRelationship._propertiesManaged = StorageHelper.GetProperties(typeof(BaseLinkModel), typeof(LinkModel));
+            DiagramRelationship._propertiesManaged = StorageHelper.GetProperties(typeof(BaseLinkModel), typeof(LinkModel));
         }
 
-        public GraphRelationship()
+        public DiagramRelationship()
         {
-            this.Labels = new List<GraphLinkLabelModel>();
-            this.ExtendedProperties = new List<PropertyValue>();
+            this.Labels = new List<DiagramLinkLabelModel>();
+            this.ExtendedProperties = new List<DiagramPropertyValue>();
         }
 
         public string Type { get; set; } = typeof(LinkModel).AssemblyQualifiedName;
@@ -28,11 +28,11 @@ namespace Blazor.Diagrams.Core.Serializations
 
         public bool Segmentable { get; set; }
 
-        public GraphEndpoint Source { get; set; }
+        public DiagramEndpoint Source { get; set; }
 
-        public GraphEndpoint Target { get; set; }
+        public DiagramEndpoint Target { get; set; }
 
-        public List<GraphLinkLabelModel> Labels { get; set; }
+        public List<DiagramLinkLabelModel> Labels { get; set; }
 
         public string? Color { get; set; }
 
@@ -41,7 +41,7 @@ namespace Blazor.Diagrams.Core.Serializations
         public double Width { get; set; } = 2;
 
 
-        public List<PropertyValue> ExtendedProperties { get; }
+        public List<DiagramPropertyValue> ExtendedProperties { get; }
 
 
         internal void CreateFrom(BaseLinkModel link)
@@ -59,12 +59,12 @@ namespace Blazor.Diagrams.Core.Serializations
 
             foreach (var label in link.Labels)
             {
-                var la = new GraphLinkLabelModel();
+                var la = new DiagramLinkLabelModel();
                 la.Serialize(label);
                 Labels.Add(la);
             }
 
-            this.Source = new GraphEndpoint()
+            this.Source = new DiagramEndpoint()
             {
                 MarkerPath = link?.SourceMarker?.Path,
                 MarkerWidth = link?.SourceMarker?.Width,
@@ -72,7 +72,7 @@ namespace Blazor.Diagrams.Core.Serializations
                 NodeId = link?.SourceNode.Id
             };
 
-            this.Target = new GraphEndpoint()
+            this.Target = new DiagramEndpoint()
             {
                 MarkerPath = link?.TargetMarker?.Path,
                 MarkerWidth = link?.TargetMarker?.Width,

@@ -2,7 +2,7 @@
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class GraphEndpoint
+    public class DiagramEndpoint
     {
 
         public Guid? PortId { get; set; }

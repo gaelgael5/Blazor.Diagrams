@@ -11,9 +11,9 @@ namespace Blazor.Diagrams.Core.Serializations
 
         public DiagramDocument()
         {
-            Groups = new GraphGroupList();
-            Nodes = new GraphNodeList();
-            Relationships = new GraphRelationshipList();
+            Groups = new DiagramGroupList();
+            Nodes = new DiagramNodeList();
+            Relationships = new DiagramRelationshipList();
         }
 
         public static DiagramDocument CreateFrom(Diagram diagram)
@@ -63,11 +63,11 @@ namespace Blazor.Diagrams.Core.Serializations
         public double PanY { get; set; }
 
 
-        public GraphGroupList Groups { get; set; }
+        public DiagramGroupList Groups { get; set; }
 
-        public GraphNodeList Nodes { get; set; }
+        public DiagramNodeList Nodes { get; set; }
 
-        public GraphRelationshipList Relationships { get; set; }
+        public DiagramRelationshipList Relationships { get; set; }
 
     }
 

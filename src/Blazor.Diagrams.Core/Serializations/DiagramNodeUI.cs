@@ -10,7 +10,7 @@ namespace Blazor.Diagrams.Core.Serializations
 
         public GraphUI()
         {
-            Ports = new GraphPortUIList();
+            Ports = new DiagramPortUIList();
         }
 
         public Guid Uuid { get; set; }
@@ -21,7 +21,7 @@ namespace Blazor.Diagrams.Core.Serializations
         public double? Width { get; set; }
         public double? Height { get; set; }
 
-        public GraphPortUIList Ports { get; set; }
+        public DiagramPortUIList Ports { get; set; }
 
         internal virtual void Serialize(NodeModel node)
         {
@@ -37,7 +37,7 @@ namespace Blazor.Diagrams.Core.Serializations
             }
 
             foreach (PortModel port in node.Ports)
-                Ports.Add(GraphPortUI.Serialize(port));
+                Ports.Add(DiagramPortUI.Serialize(port));
 
         }
 
@@ -48,7 +48,7 @@ namespace Blazor.Diagrams.Core.Serializations
             if (this.Width.HasValue && this.Height.HasValue)
                 node.Size = new Geometry.Size(this.Width.Value, this.Height.Value);
 
-            foreach (GraphPortUI port in this.Ports)
+            foreach (DiagramPortUI port in this.Ports)
             {
                 var p = port.Initialize(node);
                 node.AddPort(p);

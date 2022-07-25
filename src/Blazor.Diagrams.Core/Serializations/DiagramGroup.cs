@@ -4,19 +4,19 @@ using System.Reflection;
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class GraphGroup : GraphNode
+    public class DiagramGroup : DiagramNodeModel
     {
 
-        public GraphGroup()
+        public DiagramGroup()
         {
-            GraphNode._propertiesManaged = StorageHelper.GetProperties(typeof(GraphNode), typeof(GraphGroup));
+            DiagramNodeModel._propertiesManaged = StorageHelper.GetProperties(typeof(DiagramNodeModel), typeof(DiagramGroup));
         }
 
         public byte Padding { get; set; } = 30;
 
         protected override void CreateUIFrom(NodeModel group)
         {
-            this.Design = new GraphGrouphUI();
+            this.Design = new DiagramGrouphUI();
             this.Design.Serialize(group);
         }
 

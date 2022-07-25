@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class PropertyValue
+    public class DiagramPropertyValue
     {
 
         public string Type { get; set; } = typeof(NodeModel).AssemblyQualifiedName;

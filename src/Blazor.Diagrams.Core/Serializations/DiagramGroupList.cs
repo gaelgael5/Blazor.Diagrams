@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class GraphGroupList : List<GraphGroup>
+    public class DiagramGroupList : List<DiagramGroup>
     {
 
 
@@ -13,7 +13,7 @@ namespace Blazor.Diagrams.Core.Serializations
 
             foreach (var group in groups)
             {
-                var g = new GraphGroup();
+                var g = new DiagramGroup();
                 g.CreateFrom(group);
                 this.Add(g);
 
@@ -30,7 +30,7 @@ namespace Blazor.Diagrams.Core.Serializations
             {
                 if (n is GroupModel group)
                 {
-                    var g = new GraphGroup();
+                    var g = new DiagramGroup();
                     g.CreateFrom(group);
                     this.Add(g);
 

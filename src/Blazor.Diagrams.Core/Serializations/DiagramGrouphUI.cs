@@ -2,7 +2,7 @@
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class GraphGrouphUI : GraphUI
+    public class DiagramGrouphUI : GraphUI
     {
 
         internal override void Serialize(NodeModel n)
@@ -19,7 +19,7 @@ namespace Blazor.Diagrams.Core.Serializations
             foreach (PortModel port in node.Ports)
             {
 
-                Ports.Add(new GraphPortUI()
+                Ports.Add(new DiagramPortUI()
                 {
                     Uuid = port.Id,
                     Alignment = port.Alignment,

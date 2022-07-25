@@ -9,17 +9,17 @@ namespace Blazor.Diagrams.Core.Serializations
 {
 
 
-    public class GraphNode
+    public class DiagramNodeModel
     {
 
-        static GraphNode()
+        static DiagramNodeModel()
         {
-            GraphNode._propertiesManaged = StorageHelper.GetProperties(typeof(GraphNode));
+            DiagramNodeModel._propertiesManaged = StorageHelper.GetProperties(typeof(DiagramNodeModel));
         }
 
-        public GraphNode()
+        public DiagramNodeModel()
         {
-            this.ExtendedProperties = new List<PropertyValue>();
+            this.ExtendedProperties = new List<DiagramPropertyValue>();
         }
 
         public string Type { get; set; } = typeof(NodeModel).AssemblyQualifiedName;
@@ -47,19 +47,31 @@ namespace Blazor.Diagrams.Core.Serializations
 
                 this.Design.Initialize(node);
 
-                diagram.Nodes.Add(node);
+                if (this.ParentGroupId != null)
+                {
+                 
+                    var group = diagram.ResolveGroup(this.ParentGroupId.Value);
+                 
+                    if (group != null)
+                        group.AddChild(node);
+                    else
+                        diagram.Nodes.Add(node);
+
+                }
+                else
+                    diagram.Nodes.Add(node);
+
             }
             else
             {
 
             }
 
-
         }
 
         public GraphUI Design { get; set; }
 
-        public List<PropertyValue> ExtendedProperties { get; }
+        public List<DiagramPropertyValue> ExtendedProperties { get; }
 
         #region Serialize
 

@@ -2,7 +2,7 @@
 
 namespace Blazor.Diagrams.Core.Serializations
 {
-    public class GraphPortUIList : List<GraphPortUI>
+    public class DiagramPortUIList : List<DiagramPortUI>
     {
 
     }

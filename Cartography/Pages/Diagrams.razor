@@ -6,10 +6,7 @@
 
 <!-- required to resolve DiagramCanvas component -->
 @using Blazor.Diagrams.Components
-
-<h1>Z Blazor Diagrams</h1>
-
-<p>This component demonstrates a diagram.</p>
+@using Blazor.Diagrams.Core.Tools
 
 <!--
 Parent of DiagramCanvas has to have a fixed width/height
@@ -19,25 +16,34 @@ or it will not be rendered.
 100vh = 100% viewport height
 -->
 <div class="row h-100">
+
     <div class="col-1">
         @* Toolbox *@
         <div class="row h-100 p-4 no-gutters" style="background: #eee;">
+            @foreach (string category in toolbox.Categories())
+            {
+                <div class="text-center" draggable="true">
+                    <span>@category</span>
+                        @foreach (ToolboxItem item in toolbox.GetByCategory(category))
+                        {
 
-            <div class="text-center" draggable="true" @ondragstart="() => OnDragStart(0)">
-                <img class="d-block m-auto" src="@icon" />
+                            string uuid = item.Uuid.ToString();
 
-                <span>Default Node</span>
-            </div>
+                            <div class="text-center" draggable="true"
+                                @ondragstart="() => OnDragStart(uuid)">
+                                <img class="d-block m-auto" src="@item.Icon" />
+                                <span>@item.Label</span>
+                            </div>
 
-            <div class="text-center" draggable="true" @ondragstart="() => OnDragStart(0)">
-                <img class="d-block m-auto" src="_content/SharedDemo/img/BotAnswerNodeWidget.png" />
-                <span>Bot Answer Node</span>
-            </div>
-
+                        }
+                </div>
+            }
         </div>
     </div>
 
-    <div class="col-11" style="width:100vw; height: 100vh" ondragover="event.preventDefault();" @ondragover:preventDefault @ondrop="OnDrop">
+    <div class="col-11" style="width:100vw; height: 100vh"
+         ondragover="event.preventDefault();"
+         @ondragover:preventDefault @ondrop="OnDrop">
         <CascadingValue Value="Diagram">
             <DiagramCanvas></DiagramCanvas>
         </CascadingValue>

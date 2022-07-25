@@ -27,11 +27,11 @@ namespace Blazor.Diagrams.Core.Serializations
         }
 
 
-        internal static List<PropertyValue> CreateExtendedPropertiesFrom(object node, HashSet<Type> excludes, HashSet<string> propertiesManaged)
+        internal static List<DiagramPropertyValue> CreateExtendedPropertiesFrom(object node, HashSet<Type> excludes, HashSet<string> propertiesManaged)
         {
 
-            var dic = new Dictionary<string, PropertyValue>();
-            var extendedProperties = new List<PropertyValue>();
+            var dic = new Dictionary<string, DiagramPropertyValue>();
+            var extendedProperties = new List<DiagramPropertyValue>();
 
             var properties = TypeDescriptor.GetProperties(node.GetType());
             foreach (PropertyDescriptor property in properties)
@@ -45,12 +45,12 @@ namespace Blazor.Diagrams.Core.Serializations
 
         }
 
-        internal static void SerializeExtendedProperties(Dictionary<string, PropertyValue> dic, PropertyDescriptor property, object component)
+        internal static void SerializeExtendedProperties(Dictionary<string, DiagramPropertyValue> dic, PropertyDescriptor property, object component)
         {
 
             if (!dic.TryGetValue(property.Name, out var value))
             {
-                value = new PropertyValue() { Name = property.Name };
+                value = new DiagramPropertyValue() { Name = property.Name };
                 value.Serialize(property, component);
                 dic.Add(property.Name, value);
             }
