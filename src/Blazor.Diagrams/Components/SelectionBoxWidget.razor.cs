@@ -9,8 +9,8 @@ namespace Blazor.Diagrams.Components
 {
     public partial class SelectionBoxWidget : IDisposable
     {
-        private Point _initialClientPoint;
-        private Point _selectionBoxTopLeft;
+        private GPoint _initialClientPoint;
+        private GPoint _selectionBoxTopLeft;
         private Size _selectionBoxSize;
 
         [CascadingParameter]
@@ -34,7 +34,7 @@ namespace Blazor.Diagrams.Components
             if (model != null || !e.ShiftKey)
                 return;
 
-            _initialClientPoint = new Point(e.ClientX, e.ClientY);
+            _initialClientPoint = new GPoint(e.ClientX, e.ClientY);
         }
 
         private void OnMouseMove(Model model, MouseEventArgs e)
@@ -71,7 +71,7 @@ namespace Blazor.Diagrams.Components
             var end = Diagram.GetRelativePoint(e.ClientX, e.ClientY);
             (var sX, var sY) = (Math.Min(start.X, end.X), Math.Min(start.Y, end.Y));
             (var eX, var eY) = (Math.Max(start.X, end.X), Math.Max(start.Y, end.Y));
-            _selectionBoxTopLeft = new Point(sX, sY);
+            _selectionBoxTopLeft = new GPoint(sX, sY);
             _selectionBoxSize = new Size(eX - sX, eY - sY);
         }
 

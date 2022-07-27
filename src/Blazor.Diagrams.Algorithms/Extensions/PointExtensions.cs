@@ -5,7 +5,7 @@ namespace Blazor.Diagrams.Algorithms.Extensions
 {
     public static class PointExtensions
     {
-        public static double DistanceTo(this Point firstPoint, Point secondPoint)
+        public static double DistanceTo(this GPoint firstPoint, GPoint secondPoint)
         {
             var x = Math.Abs(firstPoint.X - secondPoint.X);
             var y = Math.Abs(firstPoint.Y - secondPoint.Y);

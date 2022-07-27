@@ -17,15 +17,15 @@ namespace SharedDemo.Demos
             base.OnInitialized();
 
             diagram.Options.Groups.Enabled = true;
-            diagram.Nodes.Add(new NodeModel(new Point(300, 50)));
-            diagram.Nodes.Add(new NodeModel(new Point(300, 400)));
+            diagram.Nodes.Add(new NodeModel(new GPoint(300, 50)));
+            diagram.Nodes.Add(new NodeModel(new GPoint(300, 400)));
         }
 
         protected void AddNode()
         {
             var x = _random.Next(0, (int)diagram.Container.Width - 120);
             var y = _random.Next(0, (int)diagram.Container.Height - 100);
-            diagram.Nodes.Add(new NodeModel(new Point(x, y)));
+            diagram.Nodes.Add(new NodeModel(new GPoint(x, y)));
         }
 
         protected void RemoveNode()

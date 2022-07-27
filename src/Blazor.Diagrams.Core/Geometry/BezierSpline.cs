@@ -124,7 +124,7 @@ namespace Blazor.Diagrams.Core.Geometry
         /// <param name="secondControlPoints">Output Second Control points array of knots.Length - 1 length.</param>
         /// <exception cref="ArgumentNullException"><paramref name="knots"/> parameter must be not null.</exception>
         /// <exception cref="ArgumentException"><paramref name="knots"/> array must containg at least two points.</exception>
-        public static void GetCurveControlPoints(Point[] knots, out Point[] firstControlPoints, out Point[] secondControlPoints)
+        public static void GetCurveControlPoints(GPoint[] knots, out GPoint[] firstControlPoints, out GPoint[] secondControlPoints)
         {
             if (knots == null)
                 throw new ArgumentNullException("knots");
@@ -133,13 +133,13 @@ namespace Blazor.Diagrams.Core.Geometry
                 throw new ArgumentException("At least two knot points required", "knots");
             if (n == 1)
             { // Special case: Bezier curve should be a straight line.
-                firstControlPoints = new Point[1];
+                firstControlPoints = new GPoint[1];
                 // 3P1 = 2P0 + P3
-                firstControlPoints[0] = new Point((2 * knots[0].X + knots[1].X) / 3, (2 * knots[0].Y + knots[1].Y) / 3);
+                firstControlPoints[0] = new GPoint((2 * knots[0].X + knots[1].X) / 3, (2 * knots[0].Y + knots[1].Y) / 3);
 
-                secondControlPoints = new Point[1];
+                secondControlPoints = new GPoint[1];
                 // P2 = 2P1 – P0
-                secondControlPoints[0] = new Point(2 * firstControlPoints[0].X - knots[0].X, 2 * firstControlPoints[0].Y - knots[0].Y);
+                secondControlPoints[0] = new GPoint(2 * firstControlPoints[0].X - knots[0].X, 2 * firstControlPoints[0].Y - knots[0].Y);
                 return;
             }
 
@@ -164,17 +164,17 @@ namespace Blazor.Diagrams.Core.Geometry
             double[] y = GetFirstControlPoints(rhs);
 
             // Fill output arrays.
-            firstControlPoints = new Point[n];
-            secondControlPoints = new Point[n];
+            firstControlPoints = new GPoint[n];
+            secondControlPoints = new GPoint[n];
             for (int i = 0; i < n; ++i)
             {
                 // First control point
-                firstControlPoints[i] = new Point(x[i], y[i]);
+                firstControlPoints[i] = new GPoint(x[i], y[i]);
                 // Second control point
                 if (i < n - 1)
-                    secondControlPoints[i] = new Point(2 * knots[i + 1].X - x[i + 1], 2 * knots[i + 1].Y - y[i + 1]);
+                    secondControlPoints[i] = new GPoint(2 * knots[i + 1].X - x[i + 1], 2 * knots[i + 1].Y - y[i + 1]);
                 else
-                    secondControlPoints[i] = new Point((knots[n].X + x[n - 1]) / 2, (knots[n].Y + y[n - 1]) / 2);
+                    secondControlPoints[i] = new GPoint((knots[n].X + x[n - 1]) / 2, (knots[n].Y + y[n - 1]) / 2);
             }
         }
 

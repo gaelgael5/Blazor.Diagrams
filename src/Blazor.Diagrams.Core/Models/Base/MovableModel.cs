@@ -8,18 +8,18 @@ namespace Blazor.Diagrams.Core.Models.Base
     public abstract class MovableModel : SelectableModel
     {
 
-        public MovableModel(Point? position = null)
+        public MovableModel(GPoint? position = null)
         {
-            Position = position ?? Point.Zero;
+            Position = position ?? GPoint.Zero;
         }
 
-        public MovableModel(Guid id, Point? position = null) : base(id)
+        public MovableModel(Guid id, GPoint? position = null) : base(id)
         {
-            Position = position ?? Point.Zero;
+            Position = position ?? GPoint.Zero;
         }
 
-        public Point Position { get; set; }
+        public GPoint Position { get; set; }
 
-        public virtual void SetPosition(double x, double y) => Position = new Point(x, y);
+        public virtual void SetPosition(double x, double y) => Position = new GPoint(x, y);
     }
 }

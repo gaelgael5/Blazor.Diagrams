@@ -31,8 +31,8 @@ namespace Blazor.Diagrams.Core.Tests
         {
             // Arrange
             var diagram = new Diagram();
-            diagram.SetContainer(new Rectangle(new Point(0, 0), new Size(1080, 768)));
-            diagram.Nodes.Add(new NodeModel(new Point(50, 50))
+            diagram.SetContainer(new Rectangle(new GPoint(0, 0), new Size(1080, 768)));
+            diagram.Nodes.Add(new NodeModel(new GPoint(50, 50))
             {
                 Size = new Size(100, 80)
             });
@@ -52,8 +52,8 @@ namespace Blazor.Diagrams.Core.Tests
         {
             // Arrange
             var diagram = new Diagram();
-            diagram.SetContainer(new Rectangle(new Point(0, 0), new Size(1080, 768)));
-            diagram.Nodes.Add(new NodeModel(new Point(50, 50))
+            diagram.SetContainer(new Rectangle(new GPoint(0, 0), new Size(1080, 768)));
+            diagram.Nodes.Add(new NodeModel(new GPoint(50, 50))
             {
                 Size = new Size(100, 80)
             });
@@ -72,8 +72,8 @@ namespace Blazor.Diagrams.Core.Tests
         {
             // Arrange
             var diagram = new Diagram();
-            diagram.SetContainer(new Rectangle(new Point(0, 0), new Size(1080, 768)));
-            diagram.Nodes.Add(new NodeModel(new Point(50, 50))
+            diagram.SetContainer(new Rectangle(new GPoint(0, 0), new Size(1080, 768)));
+            diagram.Nodes.Add(new NodeModel(new GPoint(50, 50))
             {
                 Size = new Size(100, 80)
             });

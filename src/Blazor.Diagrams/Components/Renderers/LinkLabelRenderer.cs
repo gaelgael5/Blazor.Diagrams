@@ -43,7 +43,7 @@ namespace Blazor.Diagrams.Components.Renderers
 
         private void OnLabelChanged() => StateHasChanged();
 
-        private Point FindPosition()
+        private GPoint FindPosition()
         {
             var totalLength = Paths.Sum(p => p.GetTotalLength());
 
@@ -61,7 +61,7 @@ namespace Blazor.Diagrams.Components.Renderers
                 if (length < pathLength)
                 {
                     var pt = path.GetPointAtLength(length);
-                    return new Point(pt.X, pt.Y);
+                    return new GPoint(pt.X, pt.Y);
                 }
 
                 length -= pathLength;

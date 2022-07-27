@@ -28,12 +28,12 @@ namespace Blazor.Diagrams.Core.Tests.Extensions
             {
                 new NodeModel
                 {
-                    Position = new Point(10, 10),
+                    Position = new GPoint(10, 10),
                     Size = new Size(100, 100)
                 },
                 new NodeModel
                 {
-                    Position = new Point(200, 200),
+                    Position = new GPoint(200, 200),
                     Size = new Size(100, 100)
                 },
             };

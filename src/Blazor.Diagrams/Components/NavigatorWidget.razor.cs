@@ -16,7 +16,7 @@ namespace Blazor.Diagrams.Components
         [Parameter] public string FillColor { get; set; } = "#40babd";
         [Parameter] public bool DefaultStyle { get; set; }
 
-        private Point NodePositionAdjustment { get; set; }
+        private GPoint NodePositionAdjustment { get; set; }
         private double XFactor { get; set; }
         private double YFactor { get; set; }
 
@@ -71,7 +71,7 @@ namespace Blazor.Diagrams.Components
             (double fullSizeWidth, double fullSizeHeight) = GetFullSize(nodesMaxX, nodesMaxY);
             AdjustFullSizeWithNodesRect(nodesMinX, nodesMinY, ref fullSizeWidth, ref fullSizeHeight);
 
-            NodePositionAdjustment = new Point(nodesMinX < 0 ? Math.Abs(nodesMinX) : 0, nodesMinY < 0 ? Math.Abs(nodesMinY) : 0);
+            NodePositionAdjustment = new GPoint(nodesMinX < 0 ? Math.Abs(nodesMinX) : 0, nodesMinY < 0 ? Math.Abs(nodesMinY) : 0);
             XFactor = Width / fullSizeWidth;
             YFactor = Height / fullSizeHeight;
             StateHasChanged();

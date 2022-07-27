@@ -4,8 +4,8 @@ namespace Blazor.Diagrams.Core
 {
     public class PathGeneratorResult
     {
-        public PathGeneratorResult(string[] paths, double? sourceMarkerAngle = null, Point? sourceMarkerPosition = null,
-            double? targetMarkerAngle = null, Point? targetMarkerPosition = null)
+        public PathGeneratorResult(string[] paths, double? sourceMarkerAngle = null, GPoint? sourceMarkerPosition = null,
+            double? targetMarkerAngle = null, GPoint? targetMarkerPosition = null)
         {
             Paths = paths;
             SourceMarkerAngle = sourceMarkerAngle;
@@ -16,8 +16,8 @@ namespace Blazor.Diagrams.Core
 
         public string[] Paths { get; }
         public double? SourceMarkerAngle { get; }
-        public Point? SourceMarkerPosition { get; }
+        public GPoint? SourceMarkerPosition { get; }
         public double? TargetMarkerAngle { get; }
-        public Point? TargetMarkerPosition { get; }
+        public GPoint? TargetMarkerPosition { get; }
     }
 }

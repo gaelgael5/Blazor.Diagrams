@@ -29,7 +29,7 @@ namespace Blazor.Diagrams.Core.Geometry
             Height = Math.Abs(Top - Bottom);
         }
 
-        public Rectangle(Point position, Size size)
+        public Rectangle(GPoint position, Size size)
         {
             Left = position.X;
             Top = position.Y;
@@ -67,12 +67,12 @@ namespace Blazor.Diagrams.Core.Geometry
             return new Rectangle(x1, y1, x2, y2);
         }
 
-        public bool ContainsPoint(Point point) => ContainsPoint(point.X, point.Y);
+        public bool ContainsPoint(GPoint point) => ContainsPoint(point.X, point.Y);
 
         public bool ContainsPoint(double x, double y)
             => x >= Left && x <= Right && y >= Top && y <= Bottom;
 
-        public IEnumerable<Point> GetIntersectionsWithLine(Line line)
+        public IEnumerable<GPoint> GetIntersectionsWithLine(Line line)
         {
             var borders = new[] {
                 new Line(NorthWest, NorthEast),
@@ -89,15 +89,15 @@ namespace Blazor.Diagrams.Core.Geometry
             }
         }
 
-        public Point Center => new Point(Left + Width / 2, Top + Height / 2);
-        public Point NorthEast => new Point(Right, Top);
-        public Point SouthEast => new Point(Right, Bottom);
-        public Point SouthWest => new Point(Left, Bottom);
-        public Point NorthWest => new Point(Left, Top);
-        public Point East => new Point(Right, Top + Height / 2);
-        public Point North => new Point(Left + Width / 2, Top);
-        public Point South => new Point(Left + Width / 2, Bottom);
-        public Point West => new Point(Left, Top + Height / 2);
+        public GPoint Center => new GPoint(Left + Width / 2, Top + Height / 2);
+        public GPoint NorthEast => new GPoint(Right, Top);
+        public GPoint SouthEast => new GPoint(Right, Bottom);
+        public GPoint SouthWest => new GPoint(Left, Bottom);
+        public GPoint NorthWest => new GPoint(Left, Top);
+        public GPoint East => new GPoint(Right, Top + Height / 2);
+        public GPoint North => new GPoint(Left + Width / 2, Top);
+        public GPoint South => new GPoint(Left + Width / 2, Bottom);
+        public GPoint West => new GPoint(Left, Top + Height / 2);
 
         public bool Equals(Rectangle? other)
         {

@@ -12,14 +12,14 @@ namespace Blazor.Diagrams.Core.Models
         public event Action<NodeModel>? SizeChanged;
         public event Action<NodeModel>? Moving;
 
-        public NodeModel(Point? position = null, RenderLayer layer = RenderLayer.HTML,
+        public NodeModel(GPoint? position = null, RenderLayer layer = RenderLayer.HTML,
             ShapeDefiner? shape = null) : base(position)
         {
             Layer = layer;
             ShapeDefiner = shape ?? Shapes.Rectangle;
         }
 
-        public NodeModel(Guid id, Point? position = null, RenderLayer layer = RenderLayer.HTML,
+        public NodeModel(Guid id, GPoint? position = null, RenderLayer layer = RenderLayer.HTML,
             ShapeDefiner? shape = null) : base(id, position)
         {
             Layer = layer;
@@ -136,7 +136,7 @@ namespace Blazor.Diagrams.Core.Models
             // Save some JS calls and update ports directly here
             foreach (var port in _ports)
             {
-                port.Position = new Point(port.Position.X + deltaX, port.Position.Y + deltaY);
+                port.Position = new GPoint(port.Position.X + deltaX, port.Position.Y + deltaY);
                 port.RefreshLinks();
             }
         }

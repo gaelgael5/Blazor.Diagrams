@@ -13,7 +13,7 @@ namespace Blazor.Diagrams.Core
 {
     public static partial class Routers
     {
-        public static Point[] Orthogonal(Diagram _, BaseLinkModel link)
+        public static GPoint[] Orthogonal(Diagram _, BaseLinkModel link)
         {
             if (link.IsPortless)
                 throw new Exception("Orthogonal router doesn't work with portless links yet");
@@ -23,7 +23,7 @@ namespace Blazor.Diagrams.Core
 
             var shapeMargin = 10;
             var globalBoundsMargin = 50;
-            var spots = new List<Point>();
+            var spots = new List<GPoint>();
             var verticals = new List<double>();
             var horizontals = new List<double>();
             var sideA = link.SourcePort.Alignment;
@@ -94,7 +94,7 @@ namespace Blazor.Diagrams.Core
             }
         }
 
-        private static Point GetOriginSpot(Point p, PortAlignment alignment, double shapeMargin)
+        private static GPoint GetOriginSpot(GPoint p, PortAlignment alignment, double shapeMargin)
         {
             return alignment switch
             {
@@ -150,11 +150,11 @@ namespace Blazor.Diagrams.Core
             return result;
         }
 
-        private static List<Point> GridToSpots(Grid grid, Rectangle[] obstacles)
+        private static List<GPoint> GridToSpots(Grid grid, Rectangle[] obstacles)
         {
-            bool obstacleCollision(Point p) => obstacles.Where(o => o.ContainsPoint(p)).Any();
+            bool obstacleCollision(GPoint p) => obstacles.Where(o => o.ContainsPoint(p)).Any();
 
-            var gridPoints = new List<Point>();
+            var gridPoints = new List<GPoint>();
             foreach (var (row, data) in grid.Data)
             {
 
@@ -221,7 +221,7 @@ namespace Blazor.Diagrams.Core
             return ReducePoints(gridPoints).Where(p => !obstacleCollision(p)).ToList();
         }
 
-        private static IEnumerable<Point> ReducePoints(List<Point> points)
+        private static IEnumerable<GPoint> ReducePoints(List<GPoint> points)
         {
             var map = new Dictionary<double, List<double>>();
             foreach (var p in points)
@@ -237,12 +237,12 @@ namespace Blazor.Diagrams.Core
             {
                 foreach (var x in xs)
                 {
-                    yield return new Point(x, y);
+                    yield return new GPoint(x, y);
                 }
             }
         }
 
-        private static PointGraph CreateGraph(List<Point> spots)
+        private static PointGraph CreateGraph(List<GPoint> spots)
         {
             var hotXs = new List<double>();
             var hotYs = new List<double>();
@@ -263,12 +263,12 @@ namespace Blazor.Diagrams.Core
             {
                 for (var j = 0; j < hotXs.Count; j++)
                 {
-                    var b = new Point(hotXs[j], hotYs[i]);
+                    var b = new GPoint(hotXs[j], hotYs[i]);
                     if (!graph.Has(b)) continue;
 
                     if (j > 0)
                     {
-                        var a = new Point(hotXs[j - 1], hotYs[i]);
+                        var a = new GPoint(hotXs[j - 1], hotYs[i]);
 
                         if (graph.Has(a))
                         {
@@ -279,7 +279,7 @@ namespace Blazor.Diagrams.Core
 
                     if (i > 0)
                     {
-                        var a = new Point(hotXs[j], hotYs[i - 1]);
+                        var a = new GPoint(hotXs[j], hotYs[i - 1]);
 
                         if (graph.Has(a))
                         {
@@ -293,7 +293,7 @@ namespace Blazor.Diagrams.Core
             return graph;
         }
 
-        private static Point ExtrudeCp(Point p, double margin, PortAlignment alignment)
+        private static GPoint ExtrudeCp(GPoint p, double margin, PortAlignment alignment)
         {
             return alignment switch
             {
@@ -305,7 +305,7 @@ namespace Blazor.Diagrams.Core
             };
         }
 
-        private static Point[] ShortestPath(PointGraph graph, Point origin, Point destination)
+        private static GPoint[] ShortestPath(PointGraph graph, GPoint origin, GPoint destination)
         {
             var originNode = graph.Get(origin);
             var destinationNode = graph.Get(destination);
@@ -317,14 +317,14 @@ namespace Blazor.Diagrams.Core
             return destinationNode.ShortestPath.Select(n => n.Data).ToArray();
         }
 
-        private static Point[] SimplifyPath(Point[] points)
+        private static GPoint[] SimplifyPath(GPoint[] points)
         {
             if (points.Length <= 2)
             {
                 return points;
             }
 
-            var r = new List<Point>() { points[0] };
+            var r = new List<GPoint>() { points[0] };
             for (var i = 1; i < points.Length; i++)
             {
                 var cur = points[i];
@@ -347,7 +347,7 @@ namespace Blazor.Diagrams.Core
             return r.ToArray();
         }
 
-        private static string GetBend(Point a, Point b, Point c)
+        private static string GetBend(GPoint a, GPoint b, GPoint c)
         {
             var equalX = a.X == b.X && b.X == c.X;
             var equalY = a.Y == b.Y && b.Y == c.Y;
@@ -425,7 +425,7 @@ namespace Blazor.Diagrams.Core
     {
         public readonly Dictionary<string, Dictionary<string, PointNode>> _index = new Dictionary<string, Dictionary<string, PointNode>>();
 
-        public void Add(Point p)
+        public void Add(GPoint p)
         {
             (var x, var y) = p;
             var xs = x.ToInvariantString();
@@ -502,7 +502,7 @@ namespace Blazor.Diagrams.Core
             }
         }
 
-        private char? DirectionOf(Point a, Point b)
+        private char? DirectionOf(GPoint a, GPoint b)
         {
             if (a.X == b.X) return 'h';
             else if (a.Y == b.Y) return 'v';
@@ -519,7 +519,7 @@ namespace Blazor.Diagrams.Core
             return DirectionOfNodes(node.ShortestPath[node.ShortestPath.Count - 1], node);
         }
 
-        public void Connect(Point a, Point b)
+        public void Connect(GPoint a, GPoint b)
         {
             var nodeA = Get(a);
             var nodeB = Get(b);
@@ -530,7 +530,7 @@ namespace Blazor.Diagrams.Core
             nodeA.AdjacentNodes.Add(nodeB, a.DistanceTo(b));
         }
 
-        public bool Has(Point p)
+        public bool Has(GPoint p)
         {
             (var x, var y) = p;
             var xs = x.ToInvariantString();
@@ -538,7 +538,7 @@ namespace Blazor.Diagrams.Core
             return _index.ContainsKey(xs) && _index[xs].ContainsKey(ys);
         }
 
-        public PointNode? Get(Point p)
+        public PointNode? Get(GPoint p)
         {
             (var x, var y) = p;
             var xs = x.ToInvariantString();
@@ -553,12 +553,12 @@ namespace Blazor.Diagrams.Core
 
     class PointNode
     {
-        public PointNode(Point data)
+        public PointNode(GPoint data)
         {
             Data = data;
         }
 
-        public Point Data { get; }
+        public GPoint Data { get; }
         public double Distance { get; set; } = double.MaxValue;
         public List<PointNode> ShortestPath { get; set; } = new List<PointNode>();
         public Dictionary<PointNode, double> AdjacentNodes { get; set; } = new Dictionary<PointNode, double>();

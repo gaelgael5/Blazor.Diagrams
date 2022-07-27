@@ -6,7 +6,7 @@ namespace Blazor.Diagrams.Core.Behaviors
 {
     public class PanBehavior : Behavior
     {
-        private Point? _initialPan;
+        private GPoint? _initialPan;
         private double _lastClientX;
         private double _lastClientY;
 

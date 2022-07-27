@@ -28,7 +28,7 @@ namespace SharedDemo.Demos.Groups
         {
             _diagram.AddGroup(new GroupModel(Array.Empty<NodeModel>())
             {
-                Position = new Point(100, 100)
+                Position = new GPoint(100, 100)
             });
         }
 
@@ -63,7 +63,7 @@ namespace SharedDemo.Demos.Groups
 
         private NodeModel NewNode(double x, double y)
         {
-            var node = new NodeModel(new Point(x, y));
+            var node = new NodeModel(new GPoint(x, y));
             node.AddPort(PortAlignment.Bottom);
             node.AddPort(PortAlignment.Top);
             node.AddPort(PortAlignment.Left);

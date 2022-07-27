@@ -4,6 +4,6 @@ namespace Blazor.Diagrams.Core.Geometry
 {
     public interface IShape
     {
-        public IEnumerable<Point> GetIntersectionsWithLine(Line line);
+        public IEnumerable<GPoint> GetIntersectionsWithLine(Line line);
     }
 }

@@ -6,7 +6,7 @@ namespace Blazor.Diagrams.Core
 {
     public static partial class PathGenerators
     {
-        public static PathGeneratorResult Straight(Diagram _, BaseLinkModel link, Point[] route, Point source, Point target)
+        public static PathGeneratorResult Straight(Diagram _, BaseLinkModel link, GPoint[] route, GPoint source, GPoint target)
         {
             route = ConcatRouteAndSourceAndTarget(route, source, target);
             double? sourceAngle = null;

@@ -27,8 +27,8 @@ namespace SharedDemo.Demos.Nodes
         {
             _diagram.RegisterModelComponent<RoundedNode, RoundedNodeWidget>();
 
-            var node1 = new NodeModel(new Point(80, 80), shape: Shapes.Rectangle);
-            var node2 = new RoundedNode(new Point(280, 150), shape: Shapes.Circle);
+            var node1 = new NodeModel(new GPoint(80, 80), shape: Shapes.Rectangle);
+            var node2 = new RoundedNode(new GPoint(280, 150), shape: Shapes.Circle);
             _diagram.Nodes.Add(node1);
             _diagram.Nodes.Add(node2);
             _diagram.Links.Add(new LinkModel(node1, node2)
@@ -41,6 +41,6 @@ namespace SharedDemo.Demos.Nodes
 
     class RoundedNode : NodeModel
     {
-        public RoundedNode(Point position = null, ShapeDefiner shape = null) : base(position, RenderLayer.HTML, shape) { }
+        public RoundedNode(GPoint position = null, ShapeDefiner shape = null) : base(position, RenderLayer.HTML, shape) { }
     }
 }

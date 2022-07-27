@@ -41,7 +41,7 @@ namespace Blazor.Diagrams.Components
             return vertex;
         }
 
-        private (Point source, Point target) FindConnectionPoints(Point[] route)
+        private (GPoint source, GPoint target) FindConnectionPoints(GPoint[] route)
         {
             if (Link.SourcePort == null) // Portless
             {
@@ -71,7 +71,7 @@ namespace Blazor.Diagrams.Components
             }
         }
 
-        private Point GetPortPositionBasedOnAlignment(PortModel port, LinkMarker marker)
+        private GPoint GetPortPositionBasedOnAlignment(PortModel port, LinkMarker marker)
         {
             if (port == null)
                 return null;
@@ -83,28 +83,28 @@ namespace Blazor.Diagrams.Components
             switch (port.Alignment)
             {
                 case PortAlignment.Top:
-                    return new Point(pt.X + port.Size.Width / 2, pt.Y);
+                    return new GPoint(pt.X + port.Size.Width / 2, pt.Y);
                 case PortAlignment.TopRight:
-                    return new Point(pt.X + port.Size.Width, pt.Y);
+                    return new GPoint(pt.X + port.Size.Width, pt.Y);
                 case PortAlignment.Right:
-                    return new Point(pt.X + port.Size.Width, pt.Y + port.Size.Height / 2);
+                    return new GPoint(pt.X + port.Size.Width, pt.Y + port.Size.Height / 2);
                 case PortAlignment.BottomRight:
-                    return new Point(pt.X + port.Size.Width, pt.Y + port.Size.Height);
+                    return new GPoint(pt.X + port.Size.Width, pt.Y + port.Size.Height);
                 case PortAlignment.Bottom:
-                    return new Point(pt.X + port.Size.Width / 2, pt.Y + port.Size.Height);
+                    return new GPoint(pt.X + port.Size.Width / 2, pt.Y + port.Size.Height);
                 case PortAlignment.BottomLeft:
-                    return new Point(pt.X, pt.Y + port.Size.Height);
+                    return new GPoint(pt.X, pt.Y + port.Size.Height);
                 case PortAlignment.Left:
-                    return new Point(pt.X, pt.Y + port.Size.Height / 2);
+                    return new GPoint(pt.X, pt.Y + port.Size.Height / 2);
                 default:
                     return pt;
             }
         }
 
-        private Point GetClosestPointTo(IEnumerable<Point> points, Point point)
+        private GPoint GetClosestPointTo(IEnumerable<GPoint> points, GPoint point)
         {
             var minDist = double.MaxValue;
-            Point minPoint = null;
+            GPoint minPoint = null;
 
             foreach (var pt in points)
             {

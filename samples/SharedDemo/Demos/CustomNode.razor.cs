@@ -15,7 +15,7 @@ namespace SharedDemo.Demos
 
             diagram.RegisterModelComponent<BotAnswerNode, BotAnswerWidget>();
 
-            var node = new NodeModel(new Point(20, 20));
+            var node = new NodeModel(new GPoint(20, 20));
             node.AddPort(PortAlignment.Top);
             node.AddPort(PortAlignment.Right);
             node.AddPort(PortAlignment.Bottom);
@@ -26,7 +26,7 @@ namespace SharedDemo.Demos
 
         private BotAnswerNode NewNode(double x, double y)
         {
-            var node = new BotAnswerNode(new Point(x, y));
+            var node = new BotAnswerNode(new GPoint(x, y));
             node.AddPort(PortAlignment.Top);
             node.AddPort(PortAlignment.Bottom);
             return node;

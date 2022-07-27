@@ -14,11 +14,11 @@ namespace Blazor.Diagrams.Components.Renderers
 {
     public class NodeRenderer : ComponentBase, IDisposable
     {
-        private bool _shouldRender;
-        private bool _isVisible = true;
-        private bool _becameVisible;
-        private ElementReference _element;
-        private DotNetObjectReference<NodeRenderer> _reference;
+
+        public NodeRenderer()
+        {
+
+        }
 
         [CascadingParameter]
         public Diagram Diagram { get; set; }
@@ -174,5 +174,13 @@ namespace Blazor.Diagrams.Components.Renderers
         private void OnTouchStart(TouchEventArgs e) => Diagram.OnTouchStart(Node, e);
 
         private void OnTouchEnd(TouchEventArgs e) => Diagram.OnTouchEnd(Node, e);
+
+
+        private bool _shouldRender;
+        private bool _isVisible = true;
+        private bool _becameVisible;
+        private ElementReference _element;
+        private DotNetObjectReference<NodeRenderer> _reference;
+
     }
 }

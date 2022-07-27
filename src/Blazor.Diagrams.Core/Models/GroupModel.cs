@@ -160,7 +160,7 @@ namespace Blazor.Diagrams.Core.Models
 
             var bounds = Children.GetBounds();
             Size = new Size(bounds.Width + Padding * 2, bounds.Height + Padding * 2);
-            Position = new Point(bounds.Left - Padding, bounds.Top - Padding);
+            Position = new GPoint(bounds.Left - Padding, bounds.Top - Padding);
             return true;
         }
 

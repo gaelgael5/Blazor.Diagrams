@@ -61,14 +61,14 @@ namespace SharedDemo.Demos.Links
             _diagram.Nodes.Add(new[] { node1, node2 });
 
             link = new LinkModel(node1.GetPort(PortAlignment.Right), node2.GetPort(PortAlignment.Left));
-            link.Labels.Add(new LinkLabelModel(link, "(0,-20)", 50, new Point(0, -20)));
-            link.Labels.Add(new LinkLabelModel(link, "(0,20)", -50, new Point(0, 20)));
+            link.Labels.Add(new LinkLabelModel(link, "(0,-20)", 50, new GPoint(0, -20)));
+            link.Labels.Add(new LinkLabelModel(link, "(0,20)", -50, new GPoint(0, 20)));
             _diagram.Links.Add(link);
         }
 
         private NodeModel NewNode(double x, double y)
         {
-            var node = new NodeModel(new Point(x, y));
+            var node = new NodeModel(new GPoint(x, y));
             node.AddPort(PortAlignment.Bottom);
             node.AddPort(PortAlignment.Top);
             node.AddPort(PortAlignment.Left);

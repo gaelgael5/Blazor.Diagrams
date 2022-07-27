@@ -15,7 +15,7 @@
   public DiagramLinkLabel Label { get; set; }
 
   [Parameter]
-  public Point Position { get; set; }
+  public GPoint Position { get; set; }
 
   private double X => Position.X + (Label.Offset?.X ?? 0);
   private double Y => Position.Y + (Label.Offset?.Y ?? 0);

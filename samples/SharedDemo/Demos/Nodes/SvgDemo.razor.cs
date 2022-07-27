@@ -32,7 +32,7 @@ namespace SharedDemo.Demos.Nodes
 
         private NodeModel NewNode(double x, double y)
         {
-            var node = new NodeModel(new Point(x, y), RenderLayer.SVG);
+            var node = new NodeModel(new GPoint(x, y), RenderLayer.SVG);
             node.AddPort(PortAlignment.Left);
             node.AddPort(PortAlignment.Right);
             return node;

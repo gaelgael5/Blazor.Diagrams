@@ -27,7 +27,7 @@ namespace SharedDemo.Demos.CustomPort
 
         private NodeModel NewNode(double x, double y)
         {
-            var node = new NodeModel(new Point(x, y));
+            var node = new NodeModel(new GPoint(x, y));
             node.AddPort(new ColoredPort(node, PortAlignment.Top, true));
             node.AddPort(new ColoredPort(node, PortAlignment.Left, false));
             return node;

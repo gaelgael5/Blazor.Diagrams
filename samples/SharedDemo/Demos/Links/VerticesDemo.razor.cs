@@ -34,8 +34,8 @@ namespace SharedDemo.Demos.Links
                 Segmentable = true
             };
             link1.Labels.Add(new LinkLabelModel(link1, "Content"));
-            link1.Vertices.Add(new LinkVertexModel(link1, new Point(221, 117)));
-            link1.Vertices.Add(new LinkVertexModel(link1, new Point(111, 291)));
+            link1.Vertices.Add(new LinkVertexModel(link1, new GPoint(221, 117)));
+            link1.Vertices.Add(new LinkVertexModel(link1, new GPoint(111, 291)));
 
             var link2 = new LinkModel(node2.GetPort(PortAlignment.Right), node3.GetPort(PortAlignment.Left))
             {
@@ -43,15 +43,15 @@ namespace SharedDemo.Demos.Links
                 Segmentable = true
             };
             link2.Labels.Add(new LinkLabelModel(link2, "Content"));
-            link2.Vertices.Add(new LinkVertexModel(link2, new Point(400, 324)));
-            link2.Vertices.Add(new LinkVertexModel(link2, new Point(326, 180)));
+            link2.Vertices.Add(new LinkVertexModel(link2, new GPoint(400, 324)));
+            link2.Vertices.Add(new LinkVertexModel(link2, new GPoint(326, 180)));
 
             _diagram.Links.Add(new[] { link1, link2 });
         }
 
         private NodeModel NewNode(double x, double y)
         {
-            var node = new NodeModel(new Point(x, y));
+            var node = new NodeModel(new GPoint(x, y));
             node.AddPort(PortAlignment.Bottom);
             node.AddPort(PortAlignment.Top);
             node.AddPort(PortAlignment.Left);

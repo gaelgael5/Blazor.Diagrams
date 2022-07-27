@@ -50,7 +50,7 @@ namespace Blazor.Diagrams.Core.Behaviors
             _initialX = clientX;
             _initialY = clientY;
             _ongoingLink = Diagram.Options.Links.Factory(Diagram, port);
-            _ongoingLink.OnGoingPosition = new Point(port.Position.X + port.Size.Width / 2,
+            _ongoingLink.OnGoingPosition = new GPoint(port.Position.X + port.Size.Width / 2,
                 port.Position.Y + port.Size.Height / 2);
             Diagram.Links.Add(_ongoingLink);
         }
@@ -65,7 +65,7 @@ namespace Blazor.Diagrams.Core.Behaviors
             var sX = _ongoingLink.SourcePort!.Position.X + _ongoingLink.SourcePort.Size.Width / 2;
             var sY = _ongoingLink.SourcePort.Position.Y + _ongoingLink.SourcePort.Size.Height / 2;
 
-            _ongoingLink.OnGoingPosition = new Point(sX + deltaX, sY + deltaY);
+            _ongoingLink.OnGoingPosition = new GPoint(sX + deltaX, sY + deltaY);
 
             if (Diagram.Options.Links.EnableSnapping)
             {

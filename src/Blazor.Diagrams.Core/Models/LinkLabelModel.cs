@@ -6,7 +6,7 @@ namespace Blazor.Diagrams.Core.Models
 {
     public class LinkLabelModel : Model
     {
-        public LinkLabelModel(BaseLinkModel parent, Guid id, string content, double? distance = null, Point? offset = null) : base(id)
+        public LinkLabelModel(BaseLinkModel parent, Guid id, string content, double? distance = null, GPoint? offset = null) : base(id)
         {
             Parent = parent;
             Content = content;
@@ -14,7 +14,7 @@ namespace Blazor.Diagrams.Core.Models
             Offset = offset;
         }
 
-        public LinkLabelModel(BaseLinkModel parent, string content, double? distance = null, Point? offset = null)
+        public LinkLabelModel(BaseLinkModel parent, string content, double? distance = null, GPoint? offset = null)
         {
             Parent = parent;
             Content = content;
@@ -34,7 +34,7 @@ namespace Blazor.Diagrams.Core.Models
         /// </summary>
         public double? Distance { get; set; }
 
-        public Point? Offset { get; set; }
+        public GPoint? Offset { get; set; }
 
     }
 }

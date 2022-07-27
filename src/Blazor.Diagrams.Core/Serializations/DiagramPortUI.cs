@@ -29,7 +29,7 @@ namespace Blazor.Diagrams.Core.Serializations
 
         internal PortModel Initialize(NodeModel group)
         {
-            var p = new PortModel(group, Alignment, new Geometry.Point(this.X, this.Y));
+            var p = new PortModel(group, Alignment, new Geometry.GPoint(this.X, this.Y));
             p.SetId(this.Uuid);
             return p;
         }

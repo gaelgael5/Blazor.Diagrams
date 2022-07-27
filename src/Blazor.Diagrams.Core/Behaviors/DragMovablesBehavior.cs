@@ -8,7 +8,7 @@ namespace Blazor.Diagrams.Core.Behaviors
 {
     public class DragMovablesBehavior : Behavior
     {
-        private Point[]? _initialPositions;
+        private GPoint[]? _initialPositions;
         private double? _lastClientX;
         private double? _lastClientY;
 

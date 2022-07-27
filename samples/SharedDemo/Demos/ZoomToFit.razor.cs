@@ -17,8 +17,8 @@ namespace SharedDemo.Demos
             {
                 for (int c = 0; c < 8; c += 2)
                 {
-                    var node1 = new NodeModel(new Point(350 + c * 80 + c * 120, 150 + r * 120));
-                    var node2 = new NodeModel(new Point(350 + (c + 1) * 200, 150 + r * 120));
+                    var node1 = new NodeModel(new GPoint(350 + c * 80 + c * 120, 150 + r * 120));
+                    var node2 = new NodeModel(new GPoint(350 + (c + 1) * 200, 150 + r * 120));
 
                     var sourcePort = node1.AddPort(PortAlignment.Right);
                     var targetPort = node2.AddPort(PortAlignment.Left);

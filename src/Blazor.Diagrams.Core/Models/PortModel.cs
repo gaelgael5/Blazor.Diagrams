@@ -10,28 +10,28 @@ namespace Blazor.Diagrams.Core.Models
     {
         private readonly List<BaseLinkModel> _links = new List<BaseLinkModel>(4);
 
-        public PortModel(NodeModel parent, PortAlignment alignment = PortAlignment.Bottom, Point? position = null,
+        public PortModel(NodeModel parent, PortAlignment alignment = PortAlignment.Bottom, GPoint? position = null,
             Size? size = null)
         {
             Parent = parent;
             Alignment = alignment;
-            Position = position ?? Point.Zero;
+            Position = position ?? GPoint.Zero;
             Size = size ?? Size.Zero;
         }
 
         public PortModel(Guid id, NodeModel parent, PortAlignment alignment = PortAlignment.Bottom,
-            Point? position = null, Size? size = null) : base(id)
+            GPoint? position = null, Size? size = null) : base(id)
         {
             Parent = parent;
             Alignment = alignment;
-            Position = position ?? Point.Zero;
+            Position = position ?? GPoint.Zero;
             Size = size ?? Size.Zero;
         }
 
         public NodeModel Parent { get; }
         public PortAlignment Alignment { get; }
-        public Point Position { get; set; }
-        public Point MiddlePosition => new Point(Position.X + Size.Width / 2, Position.Y + Size.Height / 2);
+        public GPoint Position { get; set; }
+        public GPoint MiddlePosition => new GPoint(Position.X + Size.Width / 2, Position.Y + Size.Height / 2);
         public Size Size { get; set; }
         public ReadOnlyCollection<BaseLinkModel> Links => _links.AsReadOnly();
         /// <summary>

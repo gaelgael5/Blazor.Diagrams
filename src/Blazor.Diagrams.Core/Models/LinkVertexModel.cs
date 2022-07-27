@@ -6,12 +6,12 @@ namespace Blazor.Diagrams.Core.Models
 {
     public class LinkVertexModel : MovableModel
     {
-        public LinkVertexModel(BaseLinkModel parent, Guid id, Point? position = null) : base(id, position)
+        public LinkVertexModel(BaseLinkModel parent, Guid id, GPoint? position = null) : base(id, position)
         {
             Parent = parent;
         }
 
-        public LinkVertexModel(BaseLinkModel parent, Point? position = null) : base(position)
+        public LinkVertexModel(BaseLinkModel parent, GPoint? position = null) : base(position)
         {
             Parent = parent;
         }

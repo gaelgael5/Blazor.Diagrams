@@ -13,8 +13,8 @@ namespace Blazor.Diagrams.Core.Tests.Geometry
         [InlineData(5.5, 2.7, 6.5, 47.2, 44.511235)]
         public void DistanceTo(double x1, double y1, double x2, double y2, double expected)
         {
-            var pt1 = new Point(x1, y1);
-            var pt2 = new Point(x2, y2);
+            var pt1 = new GPoint(x1, y1);
+            var pt2 = new GPoint(x2, y2);
             pt1.DistanceTo(pt2).Should().BeApproximately(expected, 0.0001);
         }
     }

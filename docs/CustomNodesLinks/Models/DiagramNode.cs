@@ -8,7 +8,7 @@ namespace CustomNodesLinks.Models
     public sealed class DiagramNode : NodeModel
     {
 
-        public DiagramNode(Guid id, string name, Point pos) :
+        public DiagramNode(Guid id, string name, GPoint pos) :
           base(id, pos)
         {
             Name = name;

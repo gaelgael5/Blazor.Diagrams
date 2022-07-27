@@ -1,4 +1,6 @@
-﻿using Blazor.Diagrams.Core;
+﻿using Blazor.Diagrams.Components;
+using Blazor.Diagrams.Core;
+using Blazor.Diagrams.Core.ExtendedModels;
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
 using Blazor.Diagrams.Core.Tools;
@@ -16,24 +18,27 @@ namespace Cartography.Pages
 
         protected override void OnInitialized()
         {
+
             base.OnInitialized();
 
             this.toolbox = new Toolbox()
-            {
-
-                new ToolboxItem()
-                {
-                    Category = "Default",
-                    Label = "tool1",
-                    Icon = "/svg/GlyphFilled__1k.svg",
-                    Model = new ToolboxItemModel()
+                .Add(
+                    new ToolboxCategory() { Name = "Default", Icon = "line_weight", Label = "Misc" }
+                )
+                .Add(
+                    new ToolboxItem()
                     {
-                        Label = "tool",
-                        Ports = PortAlignment.Top | PortAlignment.Bottom,
+                        CategoryName = "Default",
+                        Label = "tool1",
+                        Icon = "account_circle",
+                        Model = new ToolboxItemModel()
+                        {
+                            Label = "tool",
+                            Ports = PortAlignment.Top | PortAlignment.Bottom,
+                            Type = typeof(Table)
+                        }
                     }
-                }
-
-            };
+                 );
 
             var options = new DiagramOptions
             {
@@ -51,6 +56,8 @@ namespace Cartography.Pages
             };
             Diagram = new Diagram(options);
 
+            Diagram.RegisterModelComponent<Table, TableNode>();
+
             Setup();
 
         }
@@ -67,7 +74,7 @@ namespace Cartography.Pages
 
         private static NodeModel NewNode(double x, double y)
         {
-            var node = new NodeModel(new Point(x, y));
+            var node = new NodeModel(new GPoint(x, y));
             node.AddPort(PortAlignment.Bottom);
             node.AddPort(PortAlignment.Top);
             node.AddPort(PortAlignment.Left);
@@ -78,10 +85,7 @@ namespace Cartography.Pages
 
         private void OnDragStart(string uuid)
         {
-            var key = new Guid(uuid);
-
-            // Can also use transferData, but this is probably "faster"
-            _draggedType = toolbox.FirstOrDefault(c => c.Uuid == key);
+            _draggedType = toolbox.GetByUuid(uuid);
         }
 
         private void OnDrop(DragEventArgs e)
@@ -111,8 +115,15 @@ namespace Cartography.Pages
 
         }
 
+        void Change(object value, string name, string action)
+        {
+            //console.Log($"{name} item with index {value} {action}");
+        }
+
         private ToolboxItem _draggedType;
         private Toolbox toolbox;
+
+
     }
 
 }

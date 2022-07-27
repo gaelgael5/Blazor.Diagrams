@@ -9,6 +9,10 @@ namespace Blazor.Diagrams.Components
     public partial class NodeWidget
     {
 
+        public NodeWidget()
+        {
+
+        }
 
         [Parameter]
         public NodeModel Node { get; set; }

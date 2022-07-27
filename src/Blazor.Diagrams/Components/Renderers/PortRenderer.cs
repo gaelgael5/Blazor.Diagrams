@@ -113,7 +113,7 @@ namespace Blazor.Diagrams.Components.Renderers
             var rect = await JSRuntime.GetBoundingClientRect(_element);
 
             Port.Size = new Size(rect.Width / zoom, rect.Height / zoom);
-            Port.Position = new Point((rect.Left - Diagram.Container.Left - pan.X) / zoom,
+            Port.Position = new GPoint((rect.Left - Diagram.Container.Left - pan.X) / zoom,
                 (rect.Top - Diagram.Container.Top - pan.Y) / zoom);
 
             Port.Initialized = true;

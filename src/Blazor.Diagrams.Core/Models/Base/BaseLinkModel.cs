@@ -49,7 +49,7 @@ namespace Blazor.Diagrams.Core.Models.Base
         public PortModel? TargetPort { get; private set; }
         public bool IsAttached => TargetNode != null || TargetPort != null;
         public bool IsPortless => SourcePort == null;
-        public Point? OnGoingPosition { get; set; }
+        public GPoint? OnGoingPosition { get; set; }
         public Router? Router { get; set; }
         public PathGenerator? PathGenerator { get; set; }
         public LinkMarker? SourceMarker { get; set; }

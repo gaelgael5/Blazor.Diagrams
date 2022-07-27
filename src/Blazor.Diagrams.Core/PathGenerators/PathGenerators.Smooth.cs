@@ -9,7 +9,7 @@ namespace Blazor.Diagrams.Core
     {
         private const double _margin = 125;
 
-        public static PathGeneratorResult Smooth(Diagram _, BaseLinkModel link, Point[] route, Point source, Point target)
+        public static PathGeneratorResult Smooth(Diagram _, BaseLinkModel link, GPoint[] route, GPoint source, GPoint target)
         {
             route = ConcatRouteAndSourceAndTarget(route, source, target);
 
@@ -34,7 +34,7 @@ namespace Blazor.Diagrams.Core
             return new PathGeneratorResult(new[] { path }, sourceAngle, route[0], targetAngle, route[^1]);
         }
 
-        private static PathGeneratorResult CurveThroughPoints(Point[] route, BaseLinkModel link)
+        private static PathGeneratorResult CurveThroughPoints(GPoint[] route, BaseLinkModel link)
         {
             double? sourceAngle = null;
             double? targetAngle = null;
@@ -63,19 +63,19 @@ namespace Blazor.Diagrams.Core
             return new PathGeneratorResult(paths, sourceAngle, route[0], targetAngle, route[^1]);
         }
 
-        private static Point[] GetRouteWithCurvePoints(BaseLinkModel link, Point[] route)
+        private static GPoint[] GetRouteWithCurvePoints(BaseLinkModel link, GPoint[] route)
         {
             if (link.IsPortless)
             {
                 if (Math.Abs(route[0].X - route[1].X) >= Math.Abs(route[0].Y - route[1].Y))
                 {
                     var cX = (route[0].X + route[1].X) / 2;
-                    return new[] { route[0], new Point(cX, route[0].Y), new Point(cX, route[1].Y), route[1] };
+                    return new[] { route[0], new GPoint(cX, route[0].Y), new GPoint(cX, route[1].Y), route[1] };
                 }
                 else
                 {
                     var cY = (route[0].Y + route[1].Y) / 2;
-                    return new[] { route[0], new Point(route[0].X, cY), new Point(route[1].X, cY), route[1] };
+                    return new[] { route[0], new GPoint(route[0].X, cY), new GPoint(route[1].X, cY), route[1] };
                 }
             }
             else
@@ -88,20 +88,20 @@ namespace Blazor.Diagrams.Core
             }
         }
 
-        private static Point GetCurvePoint(double pX, double pY, double cX, double cY, PortAlignment? alignment)
+        private static GPoint GetCurvePoint(double pX, double pY, double cX, double cY, PortAlignment? alignment)
         {
             var margin = Math.Min(_margin, Math.Pow(Math.Pow(pX - cX, 2) + Math.Pow(pY - cY, 2), .5));
             return alignment switch
             {
-                PortAlignment.Top => new Point(pX, Math.Min(pY - margin, cY)),
-                PortAlignment.Bottom => new Point(pX, Math.Max(pY + margin, cY)),
-                PortAlignment.TopRight => new Point(Math.Max(pX + margin, cX), Math.Min(pY - margin, cY)),
-                PortAlignment.BottomRight => new Point(Math.Max(pX + margin, cX), Math.Max(pY + margin, cY)),
-                PortAlignment.Right => new Point(Math.Max(pX + margin, cX), pY),
-                PortAlignment.Left => new Point(Math.Min(pX - margin, cX), pY),
-                PortAlignment.BottomLeft => new Point(Math.Min(pX - margin, cX), Math.Max(pY + margin, cY)),
-                PortAlignment.TopLeft => new Point(Math.Min(pX - margin, cX), Math.Min(pY - margin, cY)),
-                _ => new Point(cX, cY),
+                PortAlignment.Top => new GPoint(pX, Math.Min(pY - margin, cY)),
+                PortAlignment.Bottom => new GPoint(pX, Math.Max(pY + margin, cY)),
+                PortAlignment.TopRight => new GPoint(Math.Max(pX + margin, cX), Math.Min(pY - margin, cY)),
+                PortAlignment.BottomRight => new GPoint(Math.Max(pX + margin, cX), Math.Max(pY + margin, cY)),
+                PortAlignment.Right => new GPoint(Math.Max(pX + margin, cX), pY),
+                PortAlignment.Left => new GPoint(Math.Min(pX - margin, cX), pY),
+                PortAlignment.BottomLeft => new GPoint(Math.Min(pX - margin, cX), Math.Max(pY + margin, cY)),
+                PortAlignment.TopLeft => new GPoint(Math.Min(pX - margin, cX), Math.Min(pY - margin, cY)),
+                _ => new GPoint(cX, cY),
             };
         }
     }

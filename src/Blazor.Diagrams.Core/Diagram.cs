@@ -129,7 +129,7 @@ namespace Blazor.Diagrams.Core
         public LinkLayer Links { get; }
         public IReadOnlyList<GroupModel> Groups => _groups;
         public Rectangle? Container { get; internal set; }
-        public Point Pan { get; private set; } = Point.Zero;
+        public GPoint Pan { get; private set; } = GPoint.Zero;
         public double Zoom { get; private set; } = 1;
         public DiagramOptions Options { get; }
         public bool SuspendRefresh { get; set; }
@@ -373,7 +373,7 @@ namespace Blazor.Diagrams.Core
 
         public void SetPan(double x, double y)
         {
-            Pan = new Point(x, y);
+            Pan = new GPoint(x, y);
             PanChanged?.Invoke();
             Refresh();
         }
@@ -402,28 +402,28 @@ namespace Blazor.Diagrams.Core
             Refresh();
         }
 
-        public Point GetRelativeMousePoint(double clientX, double clientY)
+        public GPoint GetRelativeMousePoint(double clientX, double clientY)
         {
             if (Container == null)
                 throw new Exception("Container not available. Make sure you're not using this method before the diagram is fully loaded");
 
-            return new Point((clientX - Container.Left - Pan.X) / Zoom, (clientY - Container.Top - Pan.Y) / Zoom);
+            return new GPoint((clientX - Container.Left - Pan.X) / Zoom, (clientY - Container.Top - Pan.Y) / Zoom);
         }
 
-        public Point GetRelativePoint(double clientX, double clientY)
+        public GPoint GetRelativePoint(double clientX, double clientY)
         {
             if (Container == null)
                 throw new Exception("Container not available. Make sure you're not using this method before the diagram is fully loaded");
 
-            return new Point(clientX - Container.Left, clientY - Container.Top);
+            return new GPoint(clientX - Container.Left, clientY - Container.Top);
         }
 
-        public Point GetScreenPoint(double clientX, double clientY)
+        public GPoint GetScreenPoint(double clientX, double clientY)
         {
             if (Container == null)
                 throw new Exception("Container not available. Make sure you're not using this method before the diagram is fully loaded");
 
-            return new Point(Zoom * clientX + Container.Left + Pan.X, Zoom * clientY + Container.Top + Pan.Y);
+            return new GPoint(Zoom * clientX + Container.Left + Pan.X, Zoom * clientY + Container.Top + Pan.Y);
         }
 
         #region Events

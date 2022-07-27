@@ -56,9 +56,9 @@ or it will not be rendered.
 
   private void Setup()
   {
-    var node1 = new DiagramNode(Guid.NewGuid(), "Node 0", new Point(50, 50));
-    var node2 = new DiagramNode(Guid.NewGuid(), "Node 1", new Point(300, 300));
-    var node3 = new DiagramNode(Guid.NewGuid(), "Node 2", new Point(300, 50));
+    var node1 = new DiagramNode(Guid.NewGuid(), "Node 0", new GPoint(50, 50));
+    var node2 = new DiagramNode(Guid.NewGuid(), "Node 1", new GPoint(300, 300));
+    var node3 = new DiagramNode(Guid.NewGuid(), "Node 2", new GPoint(300, 50));
     _diagram.Nodes.Add(new[] { node1, node2, node3 });
 
   // use portless links so connection points move around when we move node

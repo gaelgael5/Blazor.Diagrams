@@ -14,7 +14,6 @@ namespace Blazor.Diagrams.Core.Serializations
 
             foreach (BaseLinkModel link in links)
             {
-
                 var l = new DiagramRelationship();
                 l.CreateFrom(link);
                 this.Add(l);
