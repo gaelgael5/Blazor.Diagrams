@@ -7,6 +7,7 @@
 <!-- required to resolve DiagramCanvas component -->
 @using Blazor.Diagrams.Components
 @using Blazor.Diagrams.Core.Tools
+@using Cartography.Components
 
 <!--
 Parent of DiagramCanvas has to have a fixed width/height
@@ -17,35 +18,7 @@ or it will not be rendered.
 -->
 <div class="row h-100">
 
-    @* Toolbox *@
-
-    <MatAccordion Style="width: fit-content" Multi="true">
-        @foreach (ToolboxCategory category in toolbox.Categories())
-        {
-            <MatExpansionPanel Style="width:120px">
-                <MatExpansionPanelSummary>
-                    <MatExpansionPanelHeader><MatIcon Icon="@category.Icon"></MatIcon>@category.Label</MatExpansionPanelHeader>
-                </MatExpansionPanelSummary>
-                <MatExpansionPanelDetails>
-                    @foreach (ToolboxItem item in toolbox.GetByCategory(category))
-                    {
-                        string uuid = item.Uuid.ToString();
-
-                        <MatCard class="row" draggable="true" @ondragstart="() => OnDragStart(uuid)" Style="width:fit-content;max-width:110px;min-width:100px;marging:50px">
-                            <MatCardContent style="text-align:center">
-                                <MatIcon Icon="@item.Icon" />
-                                <MatHeadline6 Style="font-size:12px;">
-                                    @item.Label
-                                </MatHeadline6>
-                            </MatCardContent>
-                        </MatCard>
-
-                    }
-                </MatExpansionPanelDetails>
-
-            </MatExpansionPanel>
-        }
-    </MatAccordion>
+    <Cartography.Components.ToolboxComponent Toolbox="@toolbox" />
 
     <div class="col-9" style="width:100vw; height: 100vh"
          ondragover="event.preventDefault();"

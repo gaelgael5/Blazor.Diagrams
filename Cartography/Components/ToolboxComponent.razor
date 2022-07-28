@@ -1,0 +1,44 @@
+﻿@using Blazor.Diagrams.Core
+@using Blazor.Diagrams.Core.Geometry
+@using Blazor.Diagrams.Core.Models
+
+<!-- required to resolve DiagramCanvas component -->
+@using Blazor.Diagrams.Components
+@using Blazor.Diagrams.Core.Tools
+
+<!--
+Parent of DiagramCanvas has to have a fixed width/height
+or it will not be rendered.
+
+100vw = 100% viewport width
+100vh = 100% viewport height
+-->
+@* Toolbox *@
+
+<MatAccordion Style="width: fit-content" Multi="true">
+    @foreach (ToolboxCategory category in Toolbox.Categories())
+    {
+        <MatExpansionPanel Style="width:120px">
+            <MatExpansionPanelSummary>
+                <MatExpansionPanelHeader><MatIcon Icon="@category.Icon"></MatIcon>@category.Label</MatExpansionPanelHeader>
+            </MatExpansionPanelSummary>
+            <MatExpansionPanelDetails>
+                @foreach (ToolboxItem item in Toolbox.GetByCategory(category))
+                {
+                    string uuid = item.Uuid.ToString();
+
+                    <MatCard class="row" draggable="true" @ondragstart="() => OnDragStart(uuid)" Style="width:fit-content;max-width:110px;min-width:100px;marging:50px">
+                        <MatCardContent style="text-align:center">
+                            <MatIcon Icon="@item.Icon" />
+                            <MatHeadline6 Style="font-size:12px;">
+                                @item.Label
+                            </MatHeadline6>
+                        </MatCardContent>
+                    </MatCard>
+
+                }
+            </MatExpansionPanelDetails>
+
+        </MatExpansionPanel>
+    }
+</MatAccordion>

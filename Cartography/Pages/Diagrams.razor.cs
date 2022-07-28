@@ -65,9 +65,12 @@ namespace Cartography.Pages
                     Inverse = false, // Whether to inverse the direction of the zoom when using the wheel
                 }
             };
+            
             Diagram = new Diagram(options);
-
             Diagram.RegisterModelComponent<Table, TableNode>();
+
+            this.toolbox.OnDragStart += onEventDrag;
+
 
             Setup();
 
@@ -92,11 +95,11 @@ namespace Cartography.Pages
             node.AddPort(PortAlignment.Right);
             return node;
         }
-
-
-        private void OnDragStart(string uuid)
+          
+        
+        private void onEventDrag(object sender, DragStartEventArgs args)
         {
-            _draggedType = toolbox.GetByUuid(uuid);
+            this._draggedType = args.DragedItem;
         }
 
         private void OnDrop(DragEventArgs e)
@@ -131,10 +134,8 @@ namespace Cartography.Pages
             //console.Log($"{name} item with index {value} {action}");
         }
 
-        private ToolboxItem _draggedType;
         private Toolbox toolbox;
-
-
+        private ToolboxItem _draggedType;
     }
 
 }

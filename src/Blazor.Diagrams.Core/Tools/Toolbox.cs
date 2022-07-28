@@ -42,6 +42,14 @@ namespace Blazor.Diagrams.Core.Tools
             return this;
         }
 
+        public void DragStart(string uuid)
+        {
+            if (OnDragStart != null)
+                OnDragStart(this, new DragStartEventArgs(this, uuid));
+        }
+
+        public EventHandler<DragStartEventArgs> OnDragStart;
+
         private Dictionary<string, ToolboxCategory> _categories = new Dictionary<string, ToolboxCategory>();
         private List<ToolboxItem> _items = new List<ToolboxItem>();
 
