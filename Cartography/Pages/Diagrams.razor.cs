@@ -23,17 +23,28 @@ namespace Cartography.Pages
 
             this.toolbox = new Toolbox()
                 .Add(
-                    new ToolboxCategory() { Name = "Default", Icon = "line_weight", Label = "Misc" }
+                    new ToolboxCategory() { Name = "Default", Icon = "horizontal_split", Label = "Misc" }
                 )
                 .Add(
                     new ToolboxItem()
                     {
                         CategoryName = "Default",
-                        Label = "tool1",
-                        Icon = "account_circle",
+                        Label = "model",
+                        Icon = "view_column",
                         Model = new ToolboxItemModel()
                         {
-                            Label = "tool",
+                            Label = "model",
+                            Ports = PortAlignment.Top | PortAlignment.Bottom,                            
+                        }
+                    },
+                    new ToolboxItem()
+                    {
+                        CategoryName = "Default",
+                        Label = "table",
+                        Icon = "view_column",
+                        Model = new ToolboxItemModel()
+                        {
+                            Label = "table",
                             Ports = PortAlignment.Top | PortAlignment.Bottom,
                             Type = typeof(Table)
                         }

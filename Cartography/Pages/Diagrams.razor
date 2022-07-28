@@ -18,24 +18,34 @@ or it will not be rendered.
 <div class="row h-100">
 
     @* Toolbox *@
-    <RadzenCard Style="width: fit-content" >
+
+    <MatAccordion Style="width: fit-content" Multi="true">
         @foreach (ToolboxCategory category in toolbox.Categories())
         {
-            <RadzenPanelMenu Style="width:160px">
-                <RadzenPanelMenuItem Text="@category.Label" Icon="@category.Icon">
+            <MatExpansionPanel Style="width:120px">
+                <MatExpansionPanelSummary>
+                    <MatExpansionPanelHeader><MatIcon Icon="@category.Icon"></MatIcon>@category.Label</MatExpansionPanelHeader>
+                </MatExpansionPanelSummary>
+                <MatExpansionPanelDetails>
                     @foreach (ToolboxItem item in toolbox.GetByCategory(category))
                     {
                         string uuid = item.Uuid.ToString();
-                        <RadzenPanelMenuItem draggable="true"
-                                     @ondragstart="() => OnDragStart(uuid)"
-                                     Text="@item.Label"
-                                     Icon="@item.Icon">
-                        </RadzenPanelMenuItem>
+
+                        <MatCard class="row" draggable="true" @ondragstart="() => OnDragStart(uuid)" Style="width:fit-content;max-width:110px;min-width:100px;marging:50px">
+                            <MatCardContent style="text-align:center">
+                                <MatIcon Icon="@item.Icon" />
+                                <MatHeadline6 Style="font-size:12px;">
+                                    @item.Label
+                                </MatHeadline6>
+                            </MatCardContent>
+                        </MatCard>
+
                     }
-                </RadzenPanelMenuItem>
-            </RadzenPanelMenu>
+                </MatExpansionPanelDetails>
+
+            </MatExpansionPanel>
         }
-    </RadzenCard>
+    </MatAccordion>
 
     <div class="col-9" style="width:100vw; height: 100vh"
          ondragover="event.preventDefault();"

@@ -26,11 +26,17 @@ namespace Blazor.Diagrams.Core.ExtendedModels
                 {
                     Name = "Test",
                     Type = ColumnType.Integer
+                },
+                new Column
+                {
+                    Name = "Test2",
+                    Type = ColumnType.Integer
                 }
             };
 
             AddPort(Columns[0], PortAlignment.Right);
             AddPort(Columns[1], PortAlignment.Left);
+            AddPort(Columns[2], PortAlignment.Left);
         }
 
 

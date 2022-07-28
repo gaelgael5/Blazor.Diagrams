@@ -6,17 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MudBlazor" Version="6.0.12" />
-    <PackageReference Include="Radzen.Blazor" Version="3.19.10" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\src\Blazor.Diagrams.Core\Blazor.Diagrams.Core.csproj" />
     <ProjectReference Include="..\src\Blazor.Diagrams\Blazor.Diagrams.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <PackageReference Include="MatBlazor" Version="2.9.0-develop-042" />
   </ItemGroup>
 
 </Project>
